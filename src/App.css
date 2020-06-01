@@ -1,3 +1,9 @@
+body {
+  background-color: darkslategrey;
+}
 .App {
   text-align: center;
+}
+.headerIcon {
+  font-size: 50px;
 }

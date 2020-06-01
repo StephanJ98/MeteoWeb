@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
+import { Container } from 'react-bootstrap';
+import Header from './Components/Header';
+import Body from './Components/Body';
 
 function App() {
   return (
-    <div className="App">
-      <p>
-        Future page MeteoWeb, mais pour l'instant elle est en développement.
-      </p>
-    </div>
+    <Container fluid className="App">
+      <Header />
+      <Body/>
+    </Container>
   );
 }
 
