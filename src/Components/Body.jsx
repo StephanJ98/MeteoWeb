@@ -37,7 +37,7 @@ export default class Body extends Component {
     }
 
     async getData() {
-        var response = await fetch('http://api.openweathermap.org/data/2.5/weather?lat=' + this.state.latitude + '&lon=' + this.state.longitude + '&units=metric&appid=' + this.state.APIKEY);
+        var response = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + this.state.latitude + '&lon=' + this.state.longitude + '&units=metric&appid=' + this.state.APIKEY);
         var json = await response.json();
         this.setState({ data: json });
         this.updateState();
