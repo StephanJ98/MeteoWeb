@@ -21,7 +21,6 @@ export default class Header extends Component {
         }
     }
 
-
     render() {
         return (
             <Row>
@@ -29,9 +28,9 @@ export default class Header extends Component {
                     <p className="headerIcon"><FontAwesomeIcon icon={faCloudSun} /><strong>MeteoWeb</strong></p>
                 </Col>
                 <Col md={1} sm={2} xs={2}>
-                    <button id='btnDarkMode' className='btn' onClick={this.goDark}>
-                        <FontAwesomeIcon icon={faAdjust} />
-                    </button>
+                    <div id='btnDarkMode'>
+                        <FontAwesomeIcon onClick={this.goDark} icon={faAdjust} />
+                    </div>
                 </Col>
             </Row>
         )

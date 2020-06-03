@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { withCookies } from 'react-cookie';
 import { Row, Col } from 'react-bootstrap';
 
-export default class Body extends Component {
+class Body extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,6 +23,7 @@ export default class Body extends Component {
             force: 0,
             direction: 0
         };
+        this.cookies = this.props.cookies;
         this.APIKEY = 'fb228059cd79a2e758028fcd08f5d067';
         this.getData = this.getData.bind(this);
         this.updateState = this.updateState.bind(this);
@@ -36,10 +38,15 @@ export default class Body extends Component {
     }
 
     async getData() {
-        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=${this.APIKEY}`);
-        let json = await response.json();
-        await this.setState({ data: json });
-        this.updateState();
+        if (!this.cookies.get('MeteoWebTemporalData')) {
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=${this.APIKEY}`);
+            let json = await response.json();
+            await this.setState({ data: json });
+            await this.cookies.set('MeteoWebTemporalData', this.state.data, { maxAge: '1800' });
+        } else {
+            this.setState({ data: this.cookies.get('MeteoWebTemporalData') });
+            this.updateState();
+        }
     };
 
     updateState() {
@@ -53,7 +60,7 @@ export default class Body extends Component {
         this.setState({ TMax: this.state.Main.temp_max });
         this.setState({ TMin: this.state.Main.temp_min });
         this.setState({ force: this.state.Vent.speed });
-        this.setState({ direction: this.state.Vent.deg });
+        this.setState({ direction: (this.state.Vent.deg === undefined) ? 0 : this.state.Vent.deg });
     }
 
     render() {
@@ -95,4 +102,4 @@ export default class Body extends Component {
             </Row>
         );
     }
-}
+} export default withCookies(Body);
