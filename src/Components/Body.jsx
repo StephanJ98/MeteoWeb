@@ -38,7 +38,7 @@ export default class Body extends Component {
     async getData() {
         let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=${this.APIKEY}`);
         let json = await response.json();
-        this.setState({ data: json });
+        await this.setState({ data: json });
         this.updateState();
     };
 
@@ -61,44 +61,37 @@ export default class Body extends Component {
             <Row>
                 <Col md={{ span: 6, offset: 3 }} xs={12}>
                     <Row>
-                        <Col xs={6}>
-                            <p>Ville</p>
-                        </Col>
-                        <Col xs={6}>
-                            <p>{this.state.nom}</p>
-                        </Col>
+                        <Col xs={12}><h1>{this.state.nom}</h1></Col>
                     </Row>
                     <Row>
-                        <Col xs={6}><p>Force du vent</p></Col>
-                        <Col xs={6}><p>{this.state.force} m/s</p></Col>
+                        <Col xs={4}><h4>T. Max</h4></Col>
+                        <Col xs={4}><h4>Temperature</h4></Col>
+                        <Col xs={4}><h4>T. Min</h4></Col>
                     </Row>
                     <Row>
-                        <Col xs={6}><p>Direction du vent</p></Col>
-                        <Col xs={6}><p>{this.state.direction} º</p></Col>
+                        <Col xs={4}><p>{this.state.temperature} ºC</p></Col>
+                        <Col xs={4}><p>{this.state.TMax} ºC</p></Col>
+                        <Col xs={4}><p>{this.state.TMin} ºC</p></Col>
                     </Row>
                     <Row>
-                        <Col md={6} sm={6} xs={7}><p>Sensation Thermique</p></Col>
+                        <Col md={6} sm={6} xs={7}><h4>Sensation Thermique</h4></Col>
                         <Col md={6} sm={6} xs={5}><p>{this.state.sensation} ºC</p></Col>
                     </Row>
                     <Row>
-                        <Col xs={6}><p>Humudite</p></Col>
+                        <Col xs={6}><h4>Humidite</h4></Col>
                         <Col xs={6}><p>{this.state.humidite} %</p></Col>
                     </Row>
                     <Row>
-                        <Col xs={6}><p>Pression</p></Col>
+                        <Col xs={6}><h4>Pression</h4></Col>
                         <Col xs={6}><p>{this.state.pression} Pa</p></Col>
                     </Row>
                     <Row>
-                        <Col xs={6}><p>Temperature</p></Col>
-                        <Col xs={6}><p>{this.state.temperature} ºC</p></Col>
+                        <Col xs={6}><h4>Force du vent</h4></Col>
+                        <Col xs={6}><p>{this.state.force} m/s</p></Col>
                     </Row>
                     <Row>
-                        <Col xs={6}><p>Temperature Max</p></Col>
-                        <Col xs={6}><p>{this.state.TMax} ºC</p></Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}><p>Temperature Min</p></Col>
-                        <Col xs={6}><p>{this.state.TMin} ºC</p></Col>
+                        <Col xs={6}><h4>Direction du vent</h4></Col>
+                        <Col xs={6}><p>{this.state.direction} º</p></Col>
                     </Row>
                 </Col>
             </Row>
