@@ -20,9 +20,9 @@ export default class Body extends Component {
             ciel: 0,
             Vent: 0,
             force: 0,
-            direction: 0,
-            APIKEY: 'fb228059cd79a2e758028fcd08f5d067'
+            direction: 0
         };
+        this.APIKEY = 'fb228059cd79a2e758028fcd08f5d067';
         this.getData = this.getData.bind(this);
         this.updateState = this.updateState.bind(this);
     }
@@ -32,13 +32,12 @@ export default class Body extends Component {
             await this.setState({ latitude: pos.coords.latitude });
             await this.setState({ longitude: pos.coords.longitude });
             await this.getData();
-            await console.log(this.state.nom);
         });
     }
 
     async getData() {
-        var response = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + this.state.latitude + '&lon=' + this.state.longitude + '&units=metric&appid=' + this.state.APIKEY);
-        var json = await response.json();
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=${this.APIKEY}`);
+        let json = await response.json();
         this.setState({ data: json });
         this.updateState();
     };
@@ -64,26 +63,42 @@ export default class Body extends Component {
                     <Row>
                         <Col xs={6}>
                             <p>Ville</p>
-                            <p>Force du vent</p>
-                            <p>Direction du vent</p>
-                            <p>Sensation Thermique</p>
-                            <p>Humudite</p>
-                            <p>Pression</p>
-                            <p>Temperature</p>
-                            <p>Temperature Max</p>
-                            <p>Temperature Min</p>
                         </Col>
                         <Col xs={6}>
                             <p>{this.state.nom}</p>
-                            <p>{this.state.force} m/s</p>
-                            <p>{this.state.direction} º</p>
-                            <p>{this.state.sensation} ºC</p>
-                            <p>{this.state.humidite} %</p>
-                            <p>{this.state.pression} Pa</p>
-                            <p>{this.state.temperature} ºC</p>
-                            <p>{this.state.TMax} ºC</p>
-                            <p>{this.state.TMin} ºC</p>
                         </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}><p>Force du vent</p></Col>
+                        <Col xs={6}><p>{this.state.force} m/s</p></Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}><p>Direction du vent</p></Col>
+                        <Col xs={6}><p>{this.state.direction} º</p></Col>
+                    </Row>
+                    <Row>
+                        <Col md={6} sm={6} xs={7}><p>Sensation Thermique</p></Col>
+                        <Col md={6} sm={6} xs={5}><p>{this.state.sensation} ºC</p></Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}><p>Humudite</p></Col>
+                        <Col xs={6}><p>{this.state.humidite} %</p></Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}><p>Pression</p></Col>
+                        <Col xs={6}><p>{this.state.pression} Pa</p></Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}><p>Temperature</p></Col>
+                        <Col xs={6}><p>{this.state.temperature} ºC</p></Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}><p>Temperature Max</p></Col>
+                        <Col xs={6}><p>{this.state.TMax} ºC</p></Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}><p>Temperature Min</p></Col>
+                        <Col xs={6}><p>{this.state.TMin} ºC</p></Col>
                     </Row>
                 </Col>
             </Row>
