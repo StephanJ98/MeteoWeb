@@ -1,9 +1,16 @@
 body {
   background-color: rgb(68, 116, 116);
 }
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
 .App {
   text-align: center;
 }
 .headerIcon {
   font-size: 50px;
+}
+#btnDarkMode {
+  font-size: 25px;
 }
