@@ -24,7 +24,7 @@ export default class Header extends Component {
     render() {
         return (
             <Row>
-                <Col md={11} sm={10} xs={10}>
+                <Col md={{ span: 10, offset: 1 }} sm={{ span: 9, offset: 1 }} xs={9}>
                     <p className="headerIcon"><FontAwesomeIcon icon={faCloudSun} /><strong>MeteoWeb</strong></p>
                 </Col>
                 <Col md={1} sm={2} xs={2}>

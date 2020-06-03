@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(68, 116, 116);
+  background-color: #739b9b;
 }
 .btn:focus,.btn:active {
   outline: none !important;
@@ -13,4 +13,5 @@ body {
 }
 #btnDarkMode {
   font-size: 25px;
+  padding-top: 25px;
 }
