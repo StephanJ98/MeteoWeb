@@ -15,3 +15,29 @@ body {
   font-size: 25px;
   padding-top: 25px;
 }
+#input {
+  border-top: 1px solid #374d4d;
+  border-left: 1px solid #374d4d;
+  border-bottom: 1px solid #374d4d;
+  border-right: none;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  background-color: #dff5dc70;
+}
+#input:focus, #input:active {
+  outline: none !important;
+  box-shadow: none;
+}
+#cherche {
+  border-top: 1px solid #374d4d;
+  border-right: 1px solid #374d4d;
+  border-bottom: 1px solid #374d4d;
+  border-left: none;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background-color: #dff5dc70;
+}
+#cherche:focus, #cherche:active {
+  outline: none !important;
+  box-shadow: none;
+}
