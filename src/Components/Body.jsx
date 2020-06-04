@@ -106,32 +106,58 @@ class Body extends Component {
                             <Col xs={12}><h1>{this.state.nom}</h1></Col>
                         </Row>
                         <Row>
-                            <Col sm={4} xs={3}><h4>T.Max</h4></Col>
-                            <Col sm={4} xs={6}><h4>Température</h4></Col>
-                            <Col sm={4} xs={3}><h4>T.Min</h4></Col>
+                            <Col sm={4}>
+                                <Row>
+                                    <Col xs={12}><h4>T.Max</h4></Col>
+                                    <Col xs={12}><p>{this.state.TMax} ºC</p></Col>
+                                </Row>
+                            </Col>
+                            <Col sm={4}>
+                                <Row>
+                                    <Col xs={12}><h4>Température</h4></Col>
+                                    <Col xs={12}><p>{this.state.temperature} ºC</p></Col>
+                                </Row>
+                            </Col>
+                            <Col sm={4}>
+                                <Row>
+                                    <Col xs={12}><h4>T.Min</h4></Col>
+                                    <Col xs={12}><p>{this.state.TMin} ºC</p></Col>
+                                </Row>
+                            </Col>
                         </Row>
                         <Row>
-                            <Col xs={4}><p>{this.state.temperature} ºC</p></Col>
-                            <Col xs={4}><p>{this.state.TMax} ºC</p></Col>
-                            <Col xs={4}><p>{this.state.TMin} ºC</p></Col>
+                            <Col sm={4}>
+                                <Row>
+                                    <Col xs={12}><h4>Humidité</h4></Col>
+                                    <Col xs={12}><p>{this.state.humidite} %</p></Col>
+                                </Row>
+                            </Col>
+                            <Col sm={4}>
+                                <Row>
+                                    <Col xs={12}><h4>Sensation Thermique</h4></Col>
+                                    <Col xs={12}><p>{this.state.sensation} ºC</p></Col>
+                                </Row>
+                            </Col>
+                            <Col sm={4}>
+                                <Row>
+                                    <Col xs={12}><h4>Pression</h4></Col>
+                                    <Col xs={12}><p>{this.state.pression} Pa</p></Col>
+                                </Row>
+                            </Col>
                         </Row>
                         <Row>
-                            <Col xs={4}><h4>Humidité</h4></Col>
-                            <Col xs={4}><h4>Sensation Thermique</h4></Col>
-                            <Col xs={4}><h4>Pression</h4></Col>
-                        </Row>
-                        <Row>
-                            <Col xs={4}><p>{this.state.humidite} %</p></Col>
-                            <Col xs={4}><p>{this.state.sensation} ºC</p></Col>
-                            <Col xs={4}><p>{this.state.pression} Pa</p></Col>
-                        </Row>
-                        <Row>
-                            <Col xs={6}><h4>Direction du vent</h4></Col>
-                            <Col xs={6}><h4>Force du vent</h4></Col>
-                        </Row>
-                        <Row>
-                            <Col xs={6}><p>{this.state.direction} º</p></Col>
-                            <Col xs={6}><p>{this.state.force} m/s - {(this.state.force * 3.6).toFixed(2)} Km/h</p></Col>
+                            <Col sm={6}>
+                                <Row>
+                                    <Col xs={12}><h4>Direction du vent</h4></Col>
+                                    <Col xs={12}><p>{this.state.direction} º</p></Col>
+                                </Row>
+                            </Col>
+                            <Col sm={6}>
+                                <Row>
+                                    <Col xs={12}><h4>Force du vent</h4></Col>
+                                    <Col xs={12}><p>{this.state.force} m/s - {(this.state.force * 3.6).toFixed(2)} Km/h</p></Col>
+                                </Row>
+                            </Col>
                         </Row>
                     </Col>
                 </Row>
