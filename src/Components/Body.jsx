@@ -58,6 +58,21 @@ class Body extends Component {
         }
     };
 
+    handleChange() {
+        this.setState({ ville: document.getElementById('input').value });
+    }
+
+    async handleSubmit(event) {
+        event.preventDefault();
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.ville}&units=metric&appid=${this.APIKEY}`);
+        let json = await response.json();
+        await this.setState({ data: json });
+        await this.cookies.remove('MeteoWebTemporalData');
+        await this.cookies.set('MeteoWebTemporalData', this.state.data, { maxAge: '1800' });
+        await this.updateState();
+        await console.log('Ok');
+    }
+
     updateState() {
         this.setState({ nom: this.state.data.name });
         this.setState({ Main: this.state.data.main });
@@ -70,22 +85,17 @@ class Body extends Component {
         this.setState({ TMin: this.state.Main.temp_min });
         this.setState({ force: this.state.Vent.speed });
         this.setState({ direction: (this.state.Vent.deg === undefined) ? 0 : this.state.Vent.deg });
-    }
-    handleChange() {
-        this.setState({ville: document.getElementById('input').value});
-    }
-
-    handleSubmit() {
-        console.log('Ok');
-    }
+    };
 
     render() {
         return (
             <>
                 <Row>
                     <Col>
-                        <input id='input' type='text' placeholder='Nom de la ville' onChange={this.handleChange} />
-                        <button id='cherche' type='submit' onClick={this.handleSubmit} ><FontAwesomeIcon icon={faSearch} /></button>
+                        <form onSubmit={this.handleSubmit}>
+                            <input id='input' type='text' placeholder='Nom de la ville' onChange={this.handleChange} />
+                            <button id='cherche' type='submit'><FontAwesomeIcon icon={faSearch} /></button>
+                        </form>
                     </Col>
                 </Row>
                 <Row>
@@ -119,7 +129,7 @@ class Body extends Component {
                         </Row>
                         <Row>
                             <Col xs={6}><p>{this.state.direction} º</p></Col>
-                            <Col xs={6}><p>{this.state.force} m/s</p></Col>
+                            <Col xs={6}><p>{this.state.force} m/s / {this.state.force * 3.6} Km/h</p></Col>
                         </Row>
                     </Col>
                 </Row>
