@@ -35,26 +35,29 @@ class Body extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         if (!navigator.geolocation.getCurrentPosition(async (pos) => {
             await this.setState({ latitude: pos.coords.latitude });
             await this.setState({ longitude: pos.coords.longitude });
             await this.getData();
             this.setState({ noGeo: false });
         })) {
+            await this.getData();
             this.setState({ noGeo: true });
         }
     }
 
     async getData() {
-        if (!this.cookies.get('MeteoWebTemporalData') || this.state.latitude === null) {
-            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=${this.APIKEY}`);
-            let json = await response.json();
-            await this.setState({ data: json });
-            await this.cookies.set('MeteoWebTemporalData', this.state.data, { maxAge: '1800' });
+        if (!this.cookies.get('MeteoWebTemporalData')) {
+            if (this.state.latitude !== null) {
+                let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&units=metric&appid=${this.APIKEY}`);
+                let json = await response.json();
+                await this.setState({ data: json });
+                await this.cookies.set('MeteoWebTemporalData', this.state.data, { maxAge: '1800' });
+            }
         } else {
-            this.setState({ data: this.cookies.get('MeteoWebTemporalData') });
-            this.updateState();
+            await this.setState({ data: this.cookies.get('MeteoWebTemporalData') });
+            await this.updateState();
         }
     };
 
@@ -70,7 +73,6 @@ class Body extends Component {
         await this.cookies.remove('MeteoWebTemporalData');
         await this.cookies.set('MeteoWebTemporalData', this.state.data, { maxAge: '1800' });
         await this.updateState();
-        await console.log('Ok');
     }
 
     updateState() {
@@ -129,7 +131,7 @@ class Body extends Component {
                         </Row>
                         <Row>
                             <Col xs={6}><p>{this.state.direction} º</p></Col>
-                            <Col xs={6}><p>{this.state.force} m/s / {this.state.force * 3.6} Km/h</p></Col>
+                            <Col xs={6}><p>{this.state.force} m/s / {(this.state.force * 3.6).toFixed(2)} Km/h</p></Col>
                         </Row>
                     </Col>
                 </Row>
