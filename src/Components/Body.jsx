@@ -131,7 +131,7 @@ class Body extends Component {
                         </Row>
                         <Row>
                             <Col xs={6}><p>{this.state.direction} º</p></Col>
-                            <Col xs={6}><p>{this.state.force} m/s / {(this.state.force * 3.6).toFixed(2)} Km/h</p></Col>
+                            <Col xs={6}><p>{this.state.force} m/s - {(this.state.force * 3.6).toFixed(2)} Km/h</p></Col>
                         </Row>
                     </Col>
                 </Row>

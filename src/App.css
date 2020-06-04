@@ -1,3 +1,6 @@
+html {
+  min-width: 350px;
+}
 body {
   background-color: #739b9b;
 }
@@ -9,6 +12,7 @@ body {
   text-align: center;
 }
 .headerIcon {
+  min-width: 322px;
   font-size: 50px;
 }
 #btnDarkMode {

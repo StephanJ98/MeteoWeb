@@ -16,18 +16,20 @@ export default class Header extends Component {
         this.setState({ dark: !this.state.dark });
         if (!this.state.dark) {
             document.body.classList.add("bg-secondary");
+            document.getElementById('btnDarkMode').style.color = 'white';
         } else {
             document.body.classList.remove("bg-secondary");
+            document.getElementById('btnDarkMode').style.color = '';
         }
     }
 
     render() {
         return (
             <Row>
-                <Col md={{ span: 10, offset: 1 }} sm={{ span: 9, offset: 1 }} xs={9}>
+                <Col md={{ span: 10, offset: 1 }} sm={{ span: 9, offset: 1 }} xs={11}>
                     <p className="headerIcon"><FontAwesomeIcon icon={faCloudSun} /><strong>MeteoWeb</strong></p>
                 </Col>
-                <Col md={1} sm={2} xs={2}>
+                <Col md={1} sm={2} xs={1}>
                     <div id='btnDarkMode'>
                         <FontAwesomeIcon onClick={this.goDark} icon={faAdjust} />
                     </div>
