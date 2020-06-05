@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { withCookies } from 'react-cookie';
 import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun, faAdjust } from '@fortawesome/free-solid-svg-icons';
 
-export default class Header extends Component {
+class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dark: false
         }
+        this.cookies = this.props.cookies;
+        this.changeColor = this.changeColor.bind(this);
+        this.goDark = this.goDark.bind(this);
     }
 
-    goDark = () => {
-        this.setState({ dark: !this.state.dark });
-        if (!this.state.dark) {
+    async componentDidMount() {
+        if (this.cookies.get('MeteoWebDarkmode')) {
+            await this.setState({ dark: this.cookies.get('MeteoWebDarkmode') })
+            await this.changeColor();
+        }
+    }
+
+    changeColor = () => {
+        if (this.state.dark) {
             document.body.classList.add("bg-secondary");
             document.getElementById('btnDarkMode').style.color = 'white';
         } else {
             document.body.classList.remove("bg-secondary");
             document.getElementById('btnDarkMode').style.color = '';
         }
+    }
+
+    goDark = async () => {
+        await this.setState({ dark: !this.state.dark });
+        await this.changeColor();
+        await this.cookies.remove('MeteoWebDarkmode', this.state.dark, { maxAge: '1800' });
+        await this.cookies.set('MeteoWebDarkmode', this.state.dark, { maxAge: '1800' });
     }
 
     render() {
@@ -37,4 +54,4 @@ export default class Header extends Component {
             </Row>
         )
     }
-}
+} export default withCookies(Header);

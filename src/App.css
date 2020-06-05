@@ -20,9 +20,9 @@ body {
   padding-top: 25px;
 }
 #input {
-  border-top: 1px solid #374d4d;
-  border-left: 1px solid #374d4d;
-  border-bottom: 1px solid #374d4d;
+  border-top: 2px solid #212529;
+  border-left: 2px solid #212529;
+  border-bottom: 2px solid #212529;
   border-right: none;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
@@ -33,9 +33,9 @@ body {
   box-shadow: none;
 }
 #cherche {
-  border-top: 1px solid #374d4d;
-  border-right: 1px solid #374d4d;
-  border-bottom: 1px solid #374d4d;
+  border-top: 2px solid #212529;
+  border-right: 2px solid #212529;
+  border-bottom: 2px solid #212529;
   border-left: none;
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
