@@ -11,14 +11,6 @@ body {
 .App {
   text-align: center;
 }
-.headerIcon {
-  min-width: 322px;
-  font-size: 50px;
-}
-#btnDarkMode {
-  font-size: 25px;
-  padding-top: 25px;
-}
 #input {
   border-top: 2px solid #212529;
   border-left: 2px solid #212529;
@@ -44,4 +36,31 @@ body {
 #cherche:focus, #cherche:active {
   outline: none !important;
   box-shadow: none;
+}
+.interligne{
+  padding-top: 20px;
+}
+.box {
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+.boxD {
+  background-color: aliceblue;
+  transform: scale(0.99);
+  border-radius: 5px;
+}
+.boxG {
+  background-color: aliceblue;
+  transform: scale(0.99);
+  border-radius: 5px;
+}
+
+/* Components/Header */
+.headerIcon {
+  min-width: 322px;
+  font-size: 50px;
+}
+#btnDarkMode {
+  font-size: 25px;
+  margin-bottom: 20px;
 }

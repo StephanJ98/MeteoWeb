@@ -101,67 +101,83 @@ class Body extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={{ span: 6, offset: 3 }} xs={12}>
-                        <Row>
-                            <Col xs={12}><h1>{this.state.nom}</h1></Col>
+                    <Col md={{ span: 8, offset: 2 }} xs={12}>
+                        <Row className='interligne'>
+                            <Col className='box' xs={12}><h1>{this.state.nom}</h1></Col>
                         </Row>
-                        <Row>
-                            <Col sm={4}>
-                                <Row>
-                                    <Col xs={12}><h4>T.Max</h4></Col>
-                                    <Col xs={12}><p>{this.state.TMax} ºC</p></Col>
-                                </Row>
-                            </Col>
-                            <Col sm={4}>
+                        <Row className='interligne'>
+                            <Col className='box' md={12} sm={12} xs={12}>
                                 <Row>
                                     <Col xs={12}><h4>Température</h4></Col>
                                     <Col xs={12}><p>{this.state.temperature} ºC</p></Col>
                                 </Row>
                             </Col>
-                            <Col sm={4}>
+                        </Row>
+                        <Row className='interligne'>
+                            <Col md={12} sm={12} xs={12}>
                                 <Row>
-                                    <Col xs={12}><h4>T.Min</h4></Col>
-                                    <Col xs={12}><p>{this.state.TMin} ºC</p></Col>
+                                    <Col className='boxG' md={6} sm={6} xs={12}>
+                                        <Row>
+                                            <Col xs={12}><h4>T.Max</h4></Col>
+                                            <Col xs={12}><p>{this.state.TMax} ºC</p></Col>
+                                        </Row>
+                                    </Col>
+                                    <Col className='boxD' md={6} sm={6} xs={12}>
+                                        <Row>
+                                            <Col xs={12}><h4>T.Min</h4></Col>
+                                            <Col xs={12}><p>{this.state.TMin} ºC</p></Col>
+                                        </Row>
+                                    </Col>
                                 </Row>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col sm={4}>
-                                <Row>
-                                    <Col xs={12}><h4>Humidité</h4></Col>
-                                    <Col xs={12}><p>{this.state.humidite} %</p></Col>
-                                </Row>
-                            </Col>
-                            <Col sm={4}>
+                        <Row className='interligne'>
+                            <Col className='box' md={12} sm={12} xs={12}>
                                 <Row>
                                     <Col xs={12}><h4>Sensation Thermique</h4></Col>
                                     <Col xs={12}><p>{this.state.sensation} ºC</p></Col>
                                 </Row>
                             </Col>
-                            <Col sm={4}>
+                        </Row>
+                        <Row className='interligne'>
+                            <Col md={12} sm={12} xs={12}>
                                 <Row>
-                                    <Col xs={12}><h4>Pression</h4></Col>
-                                    <Col xs={12}><p>{this.state.pression} Pa</p></Col>
+                                    <Col className='boxG' md={6} sm={6} xs={12}>
+                                        <Row>
+                                            <Col xs={12}><h4>Humidité</h4></Col>
+                                            <Col xs={12}><p>{this.state.humidite} %</p></Col>
+                                        </Row>
+                                    </Col>
+                                    <Col className='boxD' md={6} sm={6} xs={12}>
+                                        <Row>
+                                            <Col xs={12}><h4>Pression</h4></Col>
+                                            <Col xs={12}><p>{this.state.pression} Pa</p></Col>
+                                        </Row>
+                                    </Col>
                                 </Row>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col sm={6}>
+                        <Row className='interligne'>
+                            <Col md={12} sm={12} xs={12}>
                                 <Row>
-                                    <Col xs={12}><h4>Direction du vent</h4></Col>
-                                    <Col xs={12}><p>{this.state.direction} º</p></Col>
-                                </Row>
-                            </Col>
-                            <Col sm={6}>
-                                <Row>
-                                    <Col xs={12}><h4>Force du vent</h4></Col>
-                                    <Col xs={12}><p>{this.state.force} m/s - {(this.state.force * 3.6).toFixed(2)} Km/h</p></Col>
+                                    <Col className='boxG' md={6} sm={6} xs={12}>
+                                        <Row>
+                                            <Col xs={12}><h4>Direction du vent</h4></Col>
+                                            <Col xs={12}><p>{this.state.direction} º</p></Col>
+                                        </Row>
+                                    </Col>
+                                    <Col className='boxD' md={6} sm={6} xs={12}>
+                                        <Row>
+                                            <Col xs={12}><h4>Force du vent</h4></Col>
+                                            <Col xs={12}><p>{this.state.force} m/s - {(this.state.force * 3.6).toFixed(2)} Km/h</p></Col>
+                                        </Row>
+                                    </Col>
                                 </Row>
                             </Col>
                         </Row>
                     </Col>
                 </Row>
-                <Row><Col>{this.state.noGeo ? <h1>La geolocation n'est pas activé</h1> : ''}</Col></Row>
+                <Row className='interligne'><Col>{this.state.noGeo ? <h1>La geolocation n'est pas activé</h1> : ''}</Col></Row>
             </>
         );
     }

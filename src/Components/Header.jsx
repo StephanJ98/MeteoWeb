@@ -43,10 +43,10 @@ class Header extends Component {
     render() {
         return (
             <Row>
-                <Col md={{ span: 10, offset: 1 }} sm={{ span: 9, offset: 1 }} xs={11}>
+                <Col md={{ span: 8, offset: 2 }} sm={{ span: 7, offset: 2 }} xs={12}>
                     <p className="headerIcon"><FontAwesomeIcon icon={faCloudSun} /><strong>MeteoWeb</strong></p>
                 </Col>
-                <Col md={1} sm={2} xs={1}>
+                <Col md={{ span: 1, offset: 1 }} sm={{ span: 2, offset: 1 }} xs={12}>
                     <div id='btnDarkMode'>
                         <FontAwesomeIcon onClick={this.goDark} icon={faAdjust} />
                     </div>
