@@ -54,6 +54,7 @@ class Body extends Component {
                 let json = await response.json();
                 await this.setState({ data: json });
                 await this.cookies.set('MeteoWebTemporalData', this.state.data, { maxAge: '1800' });
+                await this.updateState();
             }
         } else {
             await this.setState({ data: this.cookies.get('MeteoWebTemporalData') });
