@@ -93,7 +93,7 @@ export default function Body({ }: Props) {
 
                     <div className='flex flex-col gap-2 pb-8'>
                         <div className='flex flex-col md:flex-row flex-1 justify-center text-center gap-2 text-neutral-700'>
-                            <Card title={'Wind Direction'} value={`${direction}ºC`} />
+                            <Card title={'Wind Direction'} value={`${direction} º`} />
                             <Card title={'Wind Force'} value={`${force} m/s - ${(force * 3.6).toFixed(1)} Km/h`} />
                             <Card title={'Pressure'} value={`${pression} Pa`} />
                         </div>
