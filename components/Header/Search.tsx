@@ -9,7 +9,7 @@ type Props = {}
 
 const Search = ({ }: Props) => {
     const [location, setLocation] = useState('')
-    const { setDescription, setDirection, setForce, setHumidite, setIcon, setNom, setPression, setSensation, setTemp, setTmax, setTmin } = useData()
+    const { setDescription, setDirection, setForce, setHumidite, setIcon, setNom, setPression, setSensation, setTemp, setTmax, setTmin, setLatitude, setLongitude } = useData()
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
@@ -28,6 +28,9 @@ const Search = ({ }: Props) => {
                         setDirection(data?.wind.deg)
                         setDescription(data?.weather[0].description)
                         setIcon(data?.weather[0].icon)
+                        setLatitude(data?.coord.lat)
+                        setLongitude(data?.coord.lon)
+                        setLocation('')
                     })
                     .catch(() => {
                         toast.error('Something went wrong! \n\nTry another location.', {

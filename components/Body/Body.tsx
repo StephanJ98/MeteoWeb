@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import Card from './Card'
 import Loader from './Loader'
+import Map from './Map'
 
 type Props = {
     darkTheme?: boolean
@@ -15,6 +16,7 @@ type Props = {
 export default function Body({ }: Props) {
     const { nom, temp, tmax, tmin, sensation, force, direction, humidite, pression, latitude, longitude, description, icon, setLatitude, setLongitude, setDirection, setForce, setHumidite, setNom, setPression, setSensation, setTemp, setTmax, setTmin, setDescription, setIcon } = useData()
     const [loading, setLoading] = useState(true)
+    const [first, setFirst] = useState(true)
 
     const getData = useCallback(() => {
         if (!temp) {
@@ -35,20 +37,33 @@ export default function Body({ }: Props) {
 
                     setLoading(false)
                 })
+                .catch(() => {
+                    toast.error('Something went wrong! \n\nTry another location.', {
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        }
+                    })
+                })
         }
-    }, [latitude, longitude, temp, setDescription, setDirection, setForce, setHumidite, setIcon, setNom, setPression, setSensation, setTemp, setTmax, setTmin])
+    }, [latitude, longitude, setDescription, setDirection, setForce, setHumidite, setIcon, setNom, setPression, setSensation, setTemp, setTmax, setTmin, temp])
 
     useEffect(() => {
-        if (navigator.geolocation) {
+        if (!navigator.geolocation) toast.error('The location is needed to get the weather information')
+
+        if (first) {
             navigator.geolocation.getCurrentPosition(async (pos) => {
                 setLatitude(pos.coords.latitude)
                 setLongitude(pos.coords.longitude)
             })
-            getData()
-        } else {
-            toast.error('The location is needed to get the weather information')
+            if (latitude !== 0 && longitude !== 0) {
+                getData()
+                setFirst(false)
+            }
         }
-    }, [getData, latitude, longitude, setLatitude, setLongitude, temp])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [latitude, longitude])
 
     return (
         <div className='flex flex-row justify-center text-center h-full w-full md:min-h-[70vh] mt-4'>
@@ -57,7 +72,7 @@ export default function Body({ }: Props) {
                 <Loader />
                 :
                 <div className='flex flex-col justify-center text-center gap-2 md:gap-4 md:w-full md:mx-8'>
-                    <div className='bg-white w-[95vw] md:w-full py-3 rounded-md md:py-10'>
+                    <div className='bg-white w-[95vw] md:w-full py-3 rounded-md md:py-5'>
                         <p className='font-bold text-2xl text-neutral-700'>
                             {nom} - {description}
                         </p>
@@ -91,13 +106,15 @@ export default function Body({ }: Props) {
                         </div>
                     </div>
 
-                    <div className='flex flex-col gap-2 pb-8'>
+                    <div className='flex flex-col gap-2'>
                         <div className='flex flex-col md:flex-row flex-1 justify-center text-center gap-2 text-neutral-700'>
                             <Card title={'Wind Direction'} value={`${direction} º`} />
                             <Card title={'Wind Force'} value={`${force} m/s - ${(force * 3.6).toFixed(1)} Km/h`} />
                             <Card title={'Pressure'} value={`${pression} Pa`} />
                         </div>
                     </div>
+
+                    <Map lat={latitude} lon={longitude} />
                 </div>
             }
         </div>
