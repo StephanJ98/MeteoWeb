@@ -7,7 +7,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import Card from './Card'
 import Loader from './Loader'
-import Map from './Map'
+import dynamic from 'next/dynamic'
+const Map = dynamic(() => import('./Map'), { ssr:false })
 
 type Props = {
     darkTheme?: boolean
